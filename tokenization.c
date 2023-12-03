@@ -1,10 +1,7 @@
-// TOKENIZING MODULE SOURCE
-#define _CRT_SECURE_NO_WARNINGS
-#define BUFFER_SIZE 300
 #include <stdio.h>
 #include <string.h>  // Include the string.h header for string manipulation functions
 #include "tokenization.h"
-
+#define BUFFER_SIZE 300
 // V1
 void tokenizing(void) {
     printf("*** Start of Tokenizing Words Demo ***\n");
