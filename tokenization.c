@@ -1,14 +1,18 @@
-#include <stdio.h>
-#include <string.h>  // Include the string.h header for string manipulation functions
-#include "tokenization.h"
+
+#define _CRT_SECURE_NO_WARNINGS
 #define BUFFER_SIZE 300
-// V1
-void tokenizing(void) {
+#include <stdio.h>
+#include <string.h>
+
+#define BUFFER_SIZE 100  // Define a buffer size for input
+
+void tokenizing() {
+    /* Version 1: Tokenizing Words */
     printf("*** Start of Tokenizing Words Demo ***\n");
 
-    char    words[BUFFER_SIZE];
+    char words[BUFFER_SIZE];
     char* nextWord = NULL;
-    int     wordsCounter;
+    int wordsCounter;
 
     do {
         // Prompt the user to input some words
@@ -32,9 +36,33 @@ void tokenizing(void) {
     } while (strcmp(words, "q") != 0);  // Continue the loop until the input is 'q'
 
     printf("*** End of Tokenizing Words Demo ***\n\n");
+
+
+    /* Version 2: Tokenizing Phrases */
+    printf("*** Start of Tokenization Phrases Demo ***\n");
+    char phrases[BUFFER_SIZE];
+    char* nextPhrase = NULL;
+    int phrasesCounter;
+    do {
+        printf("Type a few phrases separated by comma(q - to quit):\n");
+        fgets(phrases, BUFFER_SIZE, stdin);
+        phrases[strlen(phrases) - 1] = '\0';
+        if ((strcmp(phrases, "q") != 0)) {
+            nextPhrase = strtok(phrases, ",");
+            phrasesCounter = 1;
+
+            // Iterate through the tokenized phrases and print each one
+            while (nextPhrase) {
+                printf("Phrase #%d is \'%s\'\n", phrasesCounter++, nextPhrase);
+                nextPhrase = strtok(NULL, ",");
+            }
+        }
+    } while (strcmp(phrases, "q") != 0);
+    printf("*** End of Tokenizing Phrases Demo ***\n\n");
+
+    /* Version 3: Tokenizing Sentences */
+
 }
 
-// int main() {
-//     tokenizing();  // Call the tokenizing function from the main function
-//     return 0;      // Indicate successful program execution
-// }
+
+
