@@ -41,7 +41,7 @@ void fundamentals() {
 		fgets(buffer2, BUFFER_SIZE, stdin);				//Gets user input for the string whose length is to be measured
 		buffer2[strlen(buffer2) - 1] = '\0';			//Removes the newline character at the end of a string
 		//if user input for string is not "q"
-		if (strcmp(buffer2, "q") != 0) {			
+		if (strcmp(buffer2, "q") != 0) {
 			printf("The length of\'%s\' is %d characters\n", buffer2, (int)strlen(buffer2));	//Prints the total number of characters in the user string
 		}
 	} while (strcmp(buffer2, "q") != 0);
@@ -49,6 +49,24 @@ void fundamentals() {
 
 	/* Version 3 */
 	//>> insert here
-
-
+	printf("*** Start of Copying Strings Demo ***\n");
+	char destination[BUFFER_SIZE];							//Declares the destination string
+	char source[BUFFER_SIZE];								//Declares the source string
+	do {													//Loops till the user input is "q"
+		destination[0] = '\0';								//Resets the destination string 
+		printf("Destination string is reset to empty\n");	
+		printf("Type the source string (q - to quit):\n");
+		fgets(source, BUFFER_SIZE, stdin);					//gets the user string for the destination string and saves it in source
+		source[strlen(source) - 1] = '\0';					//removes the newline character at the end
+		//if input string is not "q"
+		if (strcmp(source, "q") != 0) {	
+			strcpy(destination, source);					//copies the string source to string destination
+			printf("New destination string is \'%s\'\n", destination);		//Displays the destination string
+		}
+	} while (strcmp(source, "q") != 0);
+	printf("*** End of Copying Strings Demo ***\n\n");
+}
+int main() {
+	fundamentals();
+	return 0;
 }

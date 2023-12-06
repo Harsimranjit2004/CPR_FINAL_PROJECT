@@ -4,43 +4,40 @@
 #define BUFFER_SIZE 80
 #include "manipulating.h"
 
-// VERSION 2 //
+// VERSION 3 //
 // 
 // Function to demonstrate string concatenation
 void manipulation(void) {
     printf("*** start of Concatenating Strings Demo ***\n");
 
     // Declare two character arrays to store strings
-    char compare1[BUFFER_SIZE];
-    char compare2[BUFFER_SIZE];
-    int result;
-    
+    char haystack[BUFFER_SIZE];
+    char needle[BUFFER_SIZE];
+    char* occurence = NULL;
+
     // Loop starts
     do {
         printf("Type the 1st string to compare (q - to quit):\n");  // prompts user to enter the 1st string to compare
-        fgets(compare1, BUFFER_SIZE, stdin);
-        compare1[strlen(compare1) - 1] = '\0';   // Removes the newline charachter from string 1
+        fgets(haystack, BUFFER_SIZE, stdin);
+        haystack[strlen(haystack) - 1] = '\0';   // Removes the newline charachter from string 1
 
         // check if string 1 is not equal to 'q' 
-        if (strcmp(compare1, "q") != 0)   
+        if (strcmp(haystack, "q") != 0)
         {
-            printf("Type the 2nd string to compare:\n"); // promts for string 2
-            fgets(compare2, BUFFER_SIZE, stdin);
-            compare2[strlen(compare2) - 1] = '\0'; // removes newline character
+            printf("Type the substring:\n"); // promts for string 2
+            fgets(needle, BUFFER_SIZE, stdin);
+            needle[strlen(needle) - 1] = '\0'; // removes newline character
+            
+            occurence = strstr(haystack, needle); // search for substring in main string
            
-            //compareing both string and store result in variable
-            result = strcmp(compare1, compare2);
-
-            //printing the reuslt
-            if (result < 0)
-                printf("\'%s\' string is less than \'%s\'\n", compare1, compare2);
-            else if (result == 0)
-                printf("\'%s\' string is equal to \'%s\'\n", compare1, compare2);
+           // check if substring is found
+            if (occurence)
+                printf("\'%s\' found at %d positon\n", needle, (int)(occurence - haystack));
             else
-                printf("\'%s\' string is greater than \ '%s\'\n", compare1, compare2);
-
+                printf("Not found\n");
+           
         }
-    } while (strcmp(compare1, "q") != 0); //terminates loop when string is q
+    } while (strcmp(haystack, "q") != 0); //terminates loop when string is q
 
     printf("*** End of Concatenating Strings Demo ***\n\n");
 }
